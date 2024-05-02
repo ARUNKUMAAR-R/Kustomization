@@ -19,7 +19,7 @@ spec:
         app: lab6a
     spec:
       containers:
-      - image: dockerhub.io/arunrascall/lab6a:latest
+      - image: arunrascall/lab6a:latest
         name: lab6a
         resources: {}
 status: {}
