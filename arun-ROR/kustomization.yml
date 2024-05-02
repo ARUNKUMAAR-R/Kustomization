@@ -1,0 +1,9 @@
+namePrefix: kustomize-
+
+resources:
+- budget-db.yml
+- budget-app.yml
+- pg.yml
+- app.yml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

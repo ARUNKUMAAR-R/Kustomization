@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: app-budget
+  name: app-budget
+  namespace: budget-application
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app-budget
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: app-budget
+    spec:
+      containers:
+      - image: arunrascall/budget-rubyonrails:development
+        name: budget-rubyonrails
+        ports:
+        - containerPort: 3000
+        env:
+        - name: POSTGRES_USER
+          value: "arun"
+        - name: POSTGRES_PASSWORD
+          value: "arun"
+        - name: POSTGRES_DB
+          value: "Budgy_development"
+        - name: POSTGRES_HOST
+          value: "budget-db-svc"
+   
+     resources: {}
+status: {}

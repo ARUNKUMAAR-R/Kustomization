@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: db-budget
+  name: db-budget
+  namespace: budget-application
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: db-budget
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: db-budget
+    spec:
+      containers:
+      - image: arunrascall/budget-postgres:fixed
+        name: budget-postgres
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_USER
+          value: "arun"
+        - name: POSTGRES_PASSWORD
+          value: "arun"
+        - name: POSTGRES_DB
+          value: "Budgy_development"
+        command: ["postgres", "-c", "max_connections=500"]
+        resources: {}
+status: {}
