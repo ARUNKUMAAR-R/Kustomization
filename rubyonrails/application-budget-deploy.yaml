@@ -45,7 +45,6 @@ spec:
               name: app-cm
               key: POSTGRES_HOST
 
-        command:
-        - ["bin/rails db:migrate RAILS_ENV=development"]
+        
         resources: {}
 status: {}
