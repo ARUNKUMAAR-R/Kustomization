@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: db-budget
+  name: db-budget
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: db-budget
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: db-budget
+    spec:
+      containers:
+      - image: arunrascall/budget-postgres:fixed
+        name: budget-postgres
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_DB
+          valueFrom:
+           secretKeyRef:
+             name: db-secret-budget
+             key: POSTGRES_DB
+        - name: POSTGRES_USER
+          valueFrom:
+           secretKeyRef:
+             name: db-secret-budget
+             key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+           secretKeyRef:
+             name: db-secret-budget
+             key: POSTGRES_PASSWORD
+        resources: {}
+status: {}

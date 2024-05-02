@@ -1,0 +1,9 @@
+namePrefix: kustomize-
+
+resources:
+- db-budget-deploy.yml
+- application-budget-deploy.yml
+- db-svc.yml
+- app-svc.yml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
