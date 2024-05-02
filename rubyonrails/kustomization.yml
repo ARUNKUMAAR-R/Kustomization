@@ -1,4 +1,4 @@
-
+namePrefix: kustom-
 
 resources:
 - db-budget-deploy.yml
