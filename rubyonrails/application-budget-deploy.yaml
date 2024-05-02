@@ -4,7 +4,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: app-budget
-  name: app-budget
+  name: kustom-app-budget
 spec:
   replicas: 2
   selector:
