@@ -1,0 +1,7 @@
+namePrefix: Kustomize-
+
+resources:
+- lab6a-deploy.yml
+- lab6a-svc-np.yml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

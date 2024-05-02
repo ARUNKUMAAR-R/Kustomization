@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: lab6a
+  name: lab6a
+  namespace: lab6a
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lab6a
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: lab6a
+    spec:
+      containers:
+      - image: dockerhub.io/arunrascall/lab6a:latest
+        name: lab6a
+        resources: {}
+status: {}
