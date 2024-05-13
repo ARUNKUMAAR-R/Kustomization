@@ -4,7 +4,7 @@ resources:
 - pv.yml
 - cm.yml
 - db-svc.yml
-- db-budget-deploy.yml
+- db-budget-stateful.yml
 - application-budget-deploy.yaml
 - app-svc.yml
 
