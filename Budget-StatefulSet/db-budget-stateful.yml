@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db-budget
+  namespace: ss
+spec:
+  serviceName: "kustom-db-budget-svc-np"
+  replicas: 2
+  selector:
+    matchLabels:
+      app: db-budget
+  template:
+    metadata:
+      labels:
+        app: db-budget
+    spec:
+      containers:
+      - name: budget-postgres
+        image: arunrascall/budget-postgres:fixed
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: app-cm
+              key: POSTGRES_DB
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: app-cm
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: app-cm
+              key: POSTGRES_PASSWORD
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "standard"
+      resources:
+        requests:
+          storage: 1Gi
+

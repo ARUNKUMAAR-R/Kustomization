@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: app-budget-svc-np
+  name: app-budget-svc-np
+  namespace: ss
+spec:
+  ports:
+  - name: "3000"
+    port: 3000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: app-budget
+  type: NodePort
+status:
+  loadBalancer: {}

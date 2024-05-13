@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: app-budget
+  name: app-budget
+  namespace: ss
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app-budget
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: app-budget
+    spec:
+      containers:
+      - image: arunrascall/budget-rubyonrails:development
+        name: budget-ror
+        ports:
+        - containerPort: 3000
+        env:
+        - name: POSTGRES_USER
+          valueFrom: 
+            configMapKeyRef:
+              name: app-cm
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom: 
+            configMapKeyRef:
+              name: app-cm
+              key: POSTGRES_PASSWORD
+        
+        - name: POSTGRES_DB
+          valueFrom: 
+            configMapKeyRef: 
+              name: app-cm
+              key: POSTGRES_DB
+        - name: POSTGRES_HOST
+          valueFrom: 
+            configMapKeyRef: 
+              name: app-cm
+              key: POSTGRES_HOST
+
+        
+        resources: {}
+status: {}
