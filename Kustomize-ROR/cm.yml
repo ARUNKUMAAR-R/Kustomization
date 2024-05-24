@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  POSTGRES_DB: Budgy_development
+  POSTGRES_PASSWORD: arun
+  POSTGRES_USER: arun
+  POSTGRES_HOST: db-budget-svc-np
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: app-cm
