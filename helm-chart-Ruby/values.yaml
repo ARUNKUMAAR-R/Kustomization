@@ -3,14 +3,14 @@ db:
   namespace: "opt"
   replicas: 3
   image:
-    repo: "docker.io/arunrascall/ruby-postgres"
+    repo: "docker.io/arunrascall/budget-postgres"
     tag: "latest"
 apps:
   app: "ruby"
   namespace: "opt"
   replicas: 4
   image:
-    repo: "docker.io/arunrascall/ruby-web"
+    repo: "docker.io/arunrascall/budget-rubyonrails"
     tag: "latest"
 secret:
   name: "app-cred"
