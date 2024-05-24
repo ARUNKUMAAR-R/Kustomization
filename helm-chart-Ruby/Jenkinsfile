@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    stages {
+        stage('Git Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/ARUNKUMAAR-R/Kustomization.git'
+            }
+        }
+
+        stage('Update GIT') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    withCredentials([usernamePassword(credentialsId: 'Github-Cred', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                        sh "git config user.email arun05106@gmail.com"
+                        sh "git config user.name arunkumaar"
+                        sh "cat helm-chart-Ruby/values.yaml"
+                        sh "sed -i 's/budget-postgres/ruby-postgres/g' helm-chart-Ruby/values.yaml"
+                        sh "sed -i 's/budget-rubyonrails/ruby-web/g' helm-chart-Ruby/values.yaml"
+                        sh "sed -i 's/fixed/latest/g' helm-chart-Ruby/values.yaml"
+                        sh "sed -i 's/development/latest/g' helm-chart-Ruby/values.yaml"
+                        sh "cat helm-chart-Ruby/values.yaml"
+                        sh "git add ."
+                        sh "git commit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
+                        sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/Kustomization.git HEAD:main"
+                    }
+                }
+            }
+        }
+    }
+}
